@@ -15,10 +15,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-app.get('/', (req, res) => {
-  res.send('Hello volunteers!')
-})
-
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
   const tasksCollection = client.db("volunteerTask").collection("tasks");
@@ -74,4 +70,4 @@ app.delete('/delete/:id', (req, res) => {
 });
 
 
-app.listen(port);
+app.listen(process.env.PORT || port);
